@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Routes 
-app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/", userRoutes);
 
 app.use(errorHandler);
 
