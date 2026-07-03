@@ -1,5 +1,6 @@
 import {createTransport} from 'nodemailer';
-import { email } from 'zod';
+import { EMAIL_PASS, EMAIL_USER } from "./env.config.js";
+
 
 const sendMail = async({email , subject  , html ,text}) => {
 
@@ -8,16 +9,17 @@ const sendMail = async({email , subject  , html ,text}) => {
     const transport = createTransport({
         host: "smtp.gmail.com",
         port:465,
+        secure: true,
         auth:{
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: EMAIL_USER,
+            pass: EMAIL_PASS
         }
     })
 
     //SEND MAIL
 
     await transport.sendMail({
-        from : process.env.EMAIL_USER,
+        from : EMAIL_USER,
         to : email,
         subject : subject,
         html : html,
